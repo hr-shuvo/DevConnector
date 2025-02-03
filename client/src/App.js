@@ -4,23 +4,31 @@ import {HomeLayout, Landing, Register, Login, DashboardLayout, Error} from "./pa
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <HomeLayout/>
-    },
-    {
-        path: '/register',
-        element: <Register/>
-    },
-    {
-        path: '/login',
-        element: <Login/>
+        element: <HomeLayout/>,
+        errorElement: <Error/>,
+        children: [
+            {
+                index: true,
+                element: <Landing/>
+            },
+            {
+                path: 'register',
+                element: <Register/>
+            },
+            {
+                path: 'login',
+                element: <Login/>
+            },
+            {
+                path: 'dashboard',
+                element: <DashboardLayout/>
+            }
+
+        ]
     },
     {
         path: '/',
         element: <HomeLayout/>
-    },
-    {
-        path: '/dashboard',
-        element: <DashboardLayout/>
     }
 ])
 
