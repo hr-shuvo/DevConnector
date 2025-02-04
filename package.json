@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Social app for developers",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "setup": "npm install && cd client && npm install",
+    "dev": "nodemon server.js"
+  },
+  "author": "H R Shuvo",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
