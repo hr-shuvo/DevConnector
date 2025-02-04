@@ -14,16 +14,16 @@ export const register = async (req, res) => {
 
         await User.create(req.body);
 
-        return res.status(StatusCodes.CREATED).json({ msg: 'User created' });
+        return res.status(StatusCodes.CREATED).json({msg: 'User created'});
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({error: error.message});
     }
 };
 
 export const login = async (req, res) => {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({email});
     if (!user) {
         throw new UnAuthenticateError('Invalid credentials!');
     }
@@ -33,7 +33,14 @@ export const login = async (req, res) => {
         throw new UnAuthenticateError('Invalid credentials!');
     }
 
-    const token = createJWT({ id: user._id, role: user.role });
+    const token = createJWT({id: user._id, role: user.role});
 
-    return res.status(200).json({ token });
+    const oneDay = 24 * 60 * 60 * 1000;
+    res.cookie('token', token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + oneDay),
+        secure: process.env.NODE_ENV === 'production'
+    });
+
+    return res.status(StatusCodes.OK).json({msg: 'User logged in'});
 }
