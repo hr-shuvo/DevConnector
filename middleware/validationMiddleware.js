@@ -1,6 +1,8 @@
-import {body, validationResult} from "express-validator";
-import {BadRequestError} from "../errors/customError.js";
+import {body, param, validationResult} from "express-validator";
+import {BadRequestError, NotFoundError} from "../errors/customError.js";
 import {JOB_STATUS, JOB_TYPE} from "../utils/constants.js";
+import mongoose from "mongoose";
+import Job from "../models/JobModel.js";
 
 
 const withValidationErrors = (validateValues) => {
@@ -23,28 +25,46 @@ export const validateTest = withValidationErrors([
     body('name')
         .notEmpty()
         .withMessage('name is required')
-        .isLength({min: 3, max:50})
+        .isLength({min: 3, max: 50})
         .withMessage('name must be at least 3 characters')
         .trim()
+]);
+
+export const validateIdParam = withValidationErrors([
+    param('id').custom(async (value) => {
+
+        const isValidId = mongoose.Types.ObjectId.isValid(value);
+
+        if (!isValidId) {
+            throw new BadRequestError('invalid MongoDB id');
+        }
+
+        /// remove for another entity
+        const job = await Job.findById(value);
+
+        if (!job) {
+            throw new NotFoundError(`job with id ${value} not found`);
+        }
+    })
 ]);
 
 export const validateJobInput = withValidationErrors([
     body('company')
         .notEmpty()
         .withMessage('company is required')
-        .isLength({min: 3, max:100})
+        .isLength({min: 3, max: 100})
         .withMessage('company must be at least 3 characters')
         .trim(),
     body('position')
         .notEmpty()
         .withMessage('position is required')
-        .isLength({min: 3, max:100})
+        .isLength({min: 3, max: 100})
         .withMessage('position must be at least 3 characters')
         .trim(),
     body('jobLocation')
         .notEmpty()
         .withMessage('jobLocation is required')
-        .isLength({min: 3, max:100})
+        .isLength({min: 3, max: 100})
         .withMessage('jobLocation must be at least 3 characters')
         .trim(),
     body('jobStatus')
