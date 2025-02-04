@@ -23,12 +23,12 @@ export const getJob = async (req, res) => {
 }
 
 export const createJob = async (req, res) => {
-    const {company, position} = req.body;
+    const {company, position, jobLocation, jobStatus, jobType} = req.body;
     if (!company || !position) {
         return res.status(StatusCodes.BAD_REQUEST).json({error: 'company and position are required'});
     }
 
-    const job = await Job.create({company, position});
+    const job = await Job.create({company, position, jobLocation, jobStatus, jobType});
 
     res.status(StatusCodes.CREATED).json({job});
 }
