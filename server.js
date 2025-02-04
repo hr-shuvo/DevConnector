@@ -4,8 +4,8 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 import jobRouter from "./routes/jobRouter.js";
-import {body, validationResult} from 'express-validator';
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
+import authRouter from "./routes/authRouter.js";
 
 
 dotenv.config();
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 
 // Routers
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', jobRouter);
 
 
