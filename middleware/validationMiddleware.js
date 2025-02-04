@@ -102,4 +102,15 @@ export const validateRegisterInput = withValidationErrors([
         .withMessage('password is required')
         .isLength({min: 4})
         .withMessage('password must be at least 4 characters')
-])
+]);
+
+export const validateLoginInput = withValidationErrors([
+    body('email')
+        .notEmpty()
+        .withMessage('email is required')
+        .isEmail()
+        .withMessage('email is invalid'),
+    body('password')
+        .notEmpty()
+        .withMessage('password is required')
+]);
