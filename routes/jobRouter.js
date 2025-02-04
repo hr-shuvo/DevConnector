@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', getAllJobs);
 router.post('/', validateJobInput, createJob);
-router.get('/:id', getJob);
+router.get('/:id', validateIdParam, getJob);
 router.put('/:id', validateJobInput, validateIdParam, updateJob);
 router.delete('/:id', validateIdParam, deleteJob);
 
