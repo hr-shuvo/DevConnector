@@ -6,6 +6,8 @@ import * as dotenv from 'dotenv';
 import jobRouter from "./routes/jobRouter.js";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import authRouter from "./routes/authRouter.js";
+import {authenticateUser} from "./middleware/authMiddleware.js";
+import cookieParser from 'cookie-parser';
 
 
 dotenv.config();
@@ -15,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -24,7 +27,7 @@ app.get('/', (req, res) => {
 
 // Routers
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/jobs', authenticateUser, jobRouter);
 
 
 app.use('*', (req, res) => {

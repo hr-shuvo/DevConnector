@@ -40,6 +40,11 @@ const JobSchema = new mongoose.Schema({
     //     type: Number,
     //     required: [true, 'Please provide a salary']
     // },
+    createdBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Please provide a user']
+    }
 
 
 }, {timestamps: true});

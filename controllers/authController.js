@@ -33,7 +33,7 @@ export const login = async (req, res) => {
         throw new UnAuthenticateError('Invalid credentials!');
     }
 
-    const token = createJWT({id: user._id, role: user.role});
+    const token = createJWT({userId: user._id, role: user.role});
 
     const oneDay = 24 * 60 * 60 * 1000;
     res.cookie('token', token, {
