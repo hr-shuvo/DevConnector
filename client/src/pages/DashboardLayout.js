@@ -2,10 +2,11 @@ import {Outlet} from "react-router-dom";
 import {BigSidebar, NavBar, SmallSidebar} from "../components";
 import Wrapper from "../assets/wrappers/Dashboard";
 import {createContext, useContext, useState} from "react";
+import {checkDefaultTheme} from "../App";
 
 const DashboardContext = createContext();
 
-const DashboardLayout = ({isDarkThemeEnabled}) => {
+const DashboardLayout = () => {
 
     // temp
     const user = {
@@ -13,7 +14,7 @@ const DashboardLayout = ({isDarkThemeEnabled}) => {
     };
 
     const [showSidebar, setShowSidebar] = useState(false);
-    const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
+    const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
 
     const toggleDarkTheme = () => {
         const newDarkTheme = !isDarkTheme;
