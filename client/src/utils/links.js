@@ -6,7 +6,7 @@ import {ImProfile} from "react-icons/im";
 const links = [
     {
         text: 'add job',
-        path: '.',
+        path: '.', // dot means the root path / dashboard
         icon: <FaWpforms/>
     },
     {
