@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+fetch("http://localhost:5000/api/v1")
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error fetching data:", error));
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

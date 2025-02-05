@@ -9,6 +9,7 @@ import authRouter from "./routes/authRouter.js";
 import {authenticateUser} from "./middleware/authMiddleware.js";
 import cookieParser from 'cookie-parser';
 import userRouter from "./routes/userRouter.js";
+import cors from 'cors';
 
 
 dotenv.config();
@@ -20,12 +21,15 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-
+app.get('/api/v1', (req, res) => {
+    res.json({msg:'API is running'});
+});
 // Routers
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
