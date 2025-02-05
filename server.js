@@ -8,6 +8,7 @@ import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import authRouter from "./routes/authRouter.js";
 import {authenticateUser} from "./middleware/authMiddleware.js";
 import cookieParser from 'cookie-parser';
+import userRouter from "./routes/userRouter.js";
 
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 
 // Routers
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', authenticateUser, userRouter);
 app.use('/api/v1/jobs', authenticateUser, jobRouter);
 
 

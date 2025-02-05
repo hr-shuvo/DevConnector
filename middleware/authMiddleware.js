@@ -1,7 +1,7 @@
 import {UnAuthenticateError} from "../errors/customError.js";
 import {verifyJWT} from "../utils/tokenUtils.js";
 
-export const authenticateUser = async (req, res, next) => {
+export const authenticateUser = (req, res, next) => {
     console.log('Authenticating user...');
 
     const {token} = req.cookies;
