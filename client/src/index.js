@@ -8,8 +8,8 @@ import customFetch from "./utils/customFetch";
 import {ToastContainer} from "react-toastify";
 
 
-const response = await customFetch.get('/');
-console.log('custom fetch: ', response.data);
+// const response = await customFetch.get('/');
+// console.log('custom fetch: ', response.data);
 
 
 

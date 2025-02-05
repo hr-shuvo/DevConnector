@@ -9,13 +9,13 @@ export const action = async ({request}) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const errors = {msg: ''};
-    if(data.password.length < 4){
+    if (data.password.length < 4) {
         errors.msg = 'Password too short';
         return errors;
     }
 
     try {
-        const response =await customFetch.post('/auth/login', data);
+        const response = await customFetch.post('/auth/login', data);
         toast.success(response?.data?.msg)
 
         return redirect('/dashboard');

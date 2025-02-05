@@ -20,8 +20,8 @@ const LogoutContainer = () => {
 
 
             <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-                <button type='button' className='dropdown-btn'><FaUserCheck/> profile</button>
-                <button type='button' className='dropdown-btn'><IoSettingsOutline/> settings</button>
+                <button type='button' className='dropdown-btn'>profile</button>
+                <button type='button' className='dropdown-btn'> settings</button>
                 <button type='button' className='dropdown-btn' onClick={logoutUser}>logout</button>
 
             </div>
