@@ -13,6 +13,8 @@ import {
     Admin
 } from "./pages";
 
+import {action as RegisterAction} from "./pages/Register";
+
 export const checkDefaultTheme = () => {
     const isDarkTheme = JSON.parse(localStorage.getItem('dark-theme'));
 
@@ -38,7 +40,8 @@ const router = createBrowserRouter([
             },
             {
                 path: 'register',
-                element: <Register/>
+                element: <Register/>,
+                action: RegisterAction
             },
             {
                 path: 'login',
@@ -47,7 +50,7 @@ const router = createBrowserRouter([
             {
                 path: 'dashboard',
                 element: <DashboardLayout/>,
-                children:[
+                children: [
                     {
                         index: true,
                         element: <AddJob/>

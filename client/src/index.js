@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import customFetch from "./utils/customFetch";
+import {ToastContainer} from "react-toastify";
 
 
 const response = await customFetch.get('/');
-console.log(response.data);
+console.log('custom fetch: ', response.data);
 
 
 
@@ -15,6 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <App/>
+        <ToastContainer position='top-right'/>
     </React.StrictMode>
 );
 
