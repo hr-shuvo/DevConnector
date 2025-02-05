@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import customFetch from "./utils/customFetch";
 
 
-fetch("http://localhost:5000/api/v1")
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(error => console.error("Error fetching data:", error));
+const response = await customFetch.get('/');
+console.log(response.data);
 
 
 
