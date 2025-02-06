@@ -325,7 +325,11 @@ button:disabled {
     background: #e0e8f9;
     color: #647acb;
 }
-.declined {
+.rejected {
     background: #ffeeee;
     color: #d66a6a;
+}
+.offer {
+    background: #d1fae5;
+    color: #047857;
 }

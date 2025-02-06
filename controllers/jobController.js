@@ -41,7 +41,7 @@ export const updateJob = async (req, res) => {
     //     throw new NotFoundError(`job with id ${id} not found`);
     // }
 
-    res.status(StatusCodes.OK).json({message: 'job updated', job});
+    res.status(StatusCodes.OK).json({msg: 'job updated', job});
 }
 
 export const deleteJob = async (req, res) => {
@@ -53,7 +53,7 @@ export const deleteJob = async (req, res) => {
     //     return res.status(StatusCodes.NOT_FOUND).json({error: 'job not found'});
     // }
 
-    res.status(StatusCodes.OK).json({message: 'job removed'});
+    res.status(StatusCodes.OK).json({msg: 'job removed'});
 }
 
 
