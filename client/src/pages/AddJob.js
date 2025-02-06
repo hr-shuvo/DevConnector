@@ -1,20 +1,19 @@
-import {Form, redirect, useNavigation, useOutletContext} from "react-router-dom";
+import {Form, redirect, useOutletContext} from "react-router-dom";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
-import {FormRow, FormRowSelect} from "../components";
+import {FormRow, FormRowSelect, SubmitBtn} from "../components";
 import {JOB_STATUS, JOB_TYPE} from "../utils/constants";
 import customFetch from "../utils/customFetch";
 import {toast} from "react-toastify";
 
-export const action = async ({request}) =>{
+export const action = async ({request}) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
-    try{
+    try {
         await customFetch.post('/jobs', data);
         toast.success('Job Added');
         return redirect('all-jobs')
-    }
-    catch (err){
+    } catch (err) {
         toast.error(err?.response?.data?.msg)
         return err;
     }
@@ -22,9 +21,6 @@ export const action = async ({request}) =>{
 
 const AddJob = () => {
     const {user} = useOutletContext();
-    const navigation = useNavigation();
-    const isSubmitting = navigation.state === "submitting";
-
 
     return (
         <Wrapper>
@@ -35,10 +31,12 @@ const AddJob = () => {
                     <FormRow type='text' name='company'/>
                     <FormRow type='text' labelText='job location' name='jobLocation' defaultValue={user.location}/>
 
-                    <FormRowSelect labelText='job status' name='jobStatus' defaultValue={JOB_STATUS.PENDING} list={Object.values(JOB_STATUS)}/>
-                    <FormRowSelect labelText='job type' name='jobType' defaultValue={JOB_TYPE.FULL_TIME} list={Object.values(JOB_TYPE)}/>
+                    <FormRowSelect labelText='job status' name='jobStatus' defaultValue={JOB_STATUS.PENDING}
+                                   list={Object.values(JOB_STATUS)}/>
+                    <FormRowSelect labelText='job type' name='jobType' defaultValue={JOB_TYPE.FULL_TIME}
+                                   list={Object.values(JOB_TYPE)}/>
 
-                    <button className='btn btn-block form-btn'>{isSubmitting ? 'submitting' : 'add'}</button>
+                    <SubmitBtn formBtn/>
                 </div>
 
             </Form>

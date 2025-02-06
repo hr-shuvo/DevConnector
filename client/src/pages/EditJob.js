@@ -1,8 +1,8 @@
-import {Form, redirect, useLoaderData, useNavigate, useNavigation, useParams} from "react-router-dom";
+import {Form, redirect, useLoaderData} from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import {toast} from "react-toastify";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
-import {FormRow, FormRowSelect} from "../components";
+import {FormRow, FormRowSelect, SubmitBtn} from "../components";
 import {JOB_STATUS, JOB_TYPE} from "../utils/constants";
 
 
@@ -21,12 +21,12 @@ export const action = async ({request, params}) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
-    try{
+    try {
         const response = await customFetch.put(`/jobs/${params.id}`, data);
 
         toast.success(response.data.msg);
         return redirect('../all-jobs')
-    }catch(err){
+    } catch (err) {
         toast.error(err?.response?.data?.msg);
         return err;
     }
@@ -34,8 +34,6 @@ export const action = async ({request, params}) => {
 
 const EditJob = () => {
     const {job} = useLoaderData();
-    const navigation = useNavigation();
-    const isSubmitting = navigation.state === 'submitting';
 
     return (
         <Wrapper>
@@ -51,8 +49,7 @@ const EditJob = () => {
                     <FormRowSelect name='jobType' labelText='job type' defaultValue={job.jobType}
                                    list={Object.values(JOB_TYPE)}/>
 
-                    <button type='submit'
-                            className='btn btn-block form-btn'>{isSubmitting ? 'submitting' : 'submit'}</button>
+                    <SubmitBtn formBtn={true}/>
 
                 </div>
             </Form>
