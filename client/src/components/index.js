@@ -3,3 +3,4 @@ export {default as FormRow} from './FormRow';
 export {default as BigSidebar} from './BigSidebar';
 export {default as SmallSidebar} from './SmallSidebar';
 export {default as NavBar} from './NavBar';
+export {default as FormRowSelect} from './FromRowSelect';
