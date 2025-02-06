@@ -1,4 +1,4 @@
-import {UnAuthenticateError} from "../errors/customError.js";
+import {UnAuthenticateError, UnAuthorizedError} from "../errors/customError.js";
 import {verifyJWT} from "../utils/tokenUtils.js";
 
 export const authenticateUser = (req, res, next) => {
@@ -57,14 +57,14 @@ export const authorizePermission = (...roles) => {
             const {userId, role} = verifyJWT(token);
 
             if (!roles.includes(role)) {
-                throw new UnAuthenticateError('You do not have permission to access this route');
+                throw new UnAuthorizedError('You do not have permission to access this route');
             }
 
             req.user = {userId, role};
 
             next();
         } catch (e) {
-            throw new UnAuthenticateError('You need to login to access this route');
+            throw new UnAuthorizedError('You do not have permission to access this route');
         }
     }
 }

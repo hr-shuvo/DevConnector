@@ -20,7 +20,7 @@ export const action = async ({request}) => {
 
         return redirect('/dashboard');
     } catch (err) {
-        // toast.error(err?.response?.data?.msg);
+        toast.error(err?.response?.data?.msg);
         errors.msg = err?.response?.data?.msg;
         return errors;
     }

@@ -38,9 +38,8 @@ export const login = async (req, res) => {
     const oneDay = 24 * 60 * 60 * 1000;
     res.cookie('token', token, {
         httpOnly: true,
-        expires: new Date(Date.now() + oneDay),
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'none'
+        expires: new Date(Date.now() + (oneDay * 7)),
+        secure: process.env.NODE_ENV === 'production'
     });
 
     return res.status(StatusCodes.OK).json({msg: 'User logged in'});
