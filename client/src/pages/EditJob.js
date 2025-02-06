@@ -21,9 +21,6 @@ export const action = async ({request, params}) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
-    console.log(data)
-
-
     try{
         const response = await customFetch.put(`/jobs/${params.id}`, data);
 
