@@ -6,13 +6,13 @@ import {checkDefaultTheme} from "../App";
 import customFetch from "../utils/customFetch";
 import {toast} from "react-toastify";
 
-export const loader = async () =>{
-    try{
+export const loader = async () => {
+    try {
         const {data} = await customFetch.get('/users/current-user');
+        if (!data) return redirect('/login');
         return data;
-    }
-    catch(error){
-        redirect('/');
+    } catch (error) {
+        return redirect('/');
     }
 }
 

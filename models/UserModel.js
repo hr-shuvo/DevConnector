@@ -14,19 +14,21 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lastName:{
+    lastName: {
         type: String,
         default: 'lastName'
     },
-    location:{
+    location: {
         type: String,
         default: 'location'
     },
-    role:{
+    role: {
         type: String,
-        enum: ['user', 'admin'],
+        enum: ['user', 'moderator', 'admin', 'super-admin'],
         default: 'user'
     },
+    avatar: String,
+    avatarPublicId: String
 
 });
 
