@@ -13,6 +13,9 @@ import cors from 'cors';
 import {dirname} from 'path';
 import {fileURLToPath} from 'url';
 import path from 'path';
+import cloudinary from "cloudinary";
+
+
 
 
 
@@ -27,7 +30,13 @@ if (process.env.NODE_ENV === 'development') {
 
 // Public
 const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(__dirname, './public')))
+app.use(express.static(path.resolve(__dirname, './public')));
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KYE,
+    api_secret: process.env.CLOUD_API_SECRET
+});
 
 
 app.use(cookieParser());
