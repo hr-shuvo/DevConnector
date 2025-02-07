@@ -18,8 +18,6 @@ export const loader = async () => {
 const Stats = () => {
     const {defaultStats, monthlyApplications} = useLoaderData();
 
-    console.log(monthlyApplications.length)
-
     return (
         <>
             <StatsContainer defaultStatus={defaultStats}/>
