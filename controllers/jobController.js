@@ -75,7 +75,7 @@ export const showStats = async (req, res) => {
 
     console.log(stats);
 
-    const defaultStatus = {
+    const defaultStats = {
         pending: stats.pending || 0,
         interview: stats.interview || 0,
         rejected: stats.rejected || 0
@@ -117,7 +117,7 @@ export const showStats = async (req, res) => {
     //     }
     // ]
 
-    res.status(StatusCodes.OK).json({defaultStatus, monthlyApplications})
+    res.status(StatusCodes.OK).json({defaultStats, monthlyApplications})
 
 };
 
