@@ -1,4 +1,4 @@
-const FormRow = ({type, name, labelText, defaultValue, placeholder, required}) => {
+const FormRow = ({type, name, labelText, defaultValue, placeholder, required, onChange}) => {
     if(required){
         required = 'required';
     }
@@ -10,7 +10,7 @@ const FormRow = ({type, name, labelText, defaultValue, placeholder, required}) =
         <div className="form-row">
             <label htmlFor={name} className="form-label">{labelText || name}</label>
             <input type={type} id={name} name={name} className="form-input" placeholder={placeholder}
-                   defaultValue={defaultValue} required={required}/>
+                   defaultValue={defaultValue} required={required} onChange={onChange}/>
         </div>
     )
 

@@ -23,6 +23,8 @@ export const getAllJobs = async (req, res) => {
         queryObject.jobType = jobType;
     }
 
+    console.log(queryObject)
+
     // sort
 
     const sortOptions = {
