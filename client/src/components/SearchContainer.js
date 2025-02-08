@@ -9,15 +9,27 @@ const SearchContainer = () => {
     const {search, jobStatus, jobType, sort} = searchValues;
     const submit = useSubmit();
 
+    const debounce = (onChange) =>{
+        let timeOut;
+
+        return(e) =>{
+            const form = e.currentTarget.form;
+            clearTimeout(timeOut);
+            timeOut = setTimeout(() =>{
+                onChange(form);
+            }, 1500)
+        }
+    }
+
 
     return (
         <Wrapper>
             <Form className='form'>
                 <h5 className='form-title'>search form</h5>
                 <div className='form-center'>
-                    <FormRow type={'search'} name='search' defaultValue={search} onChange={(e) => {
-                        submit(e.currentTarget.form)
-                    }}/>
+                    <FormRow type={'search'} name='search' defaultValue={search} onChange={debounce((form) =>{
+                        submit(form)
+                    })}/>
 
                     <FormRowSelect labelText='job status' name='jobStatus'
                                    list={['all', ...Object.values((JOB_STATUS))]} defaultValue={jobStatus} onChange={(e) => {
@@ -35,8 +47,6 @@ const SearchContainer = () => {
                     }}/>
 
                     <Link to='../all-jobs' className='btn form-btn delete-btn'>Reset Search Values</Link>
-
-                    <SubmitBtn formBtn/>
 
                 </div>
 
