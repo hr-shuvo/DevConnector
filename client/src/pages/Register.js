@@ -32,11 +32,11 @@ const Register = () => {
                 <Logo/>
                 <h4>Sign Up</h4>
 
-                <FormRow type='text' name='name' placeholder='first name' defaultValue='first name' required={true}/>
-                <FormRow type='text' name='lastName' placeholder='last name' defaultValue='last name'/>
-                <FormRow type='text' name='location' placeholder='earth' defaultValue='earth'/>
-                <FormRow type='text' name='email' placeholder='email@example.com' defaultValue='email@example.com'/>
-                <FormRow type='password' name='password' placeholder='******' defaultValue='123456'/>
+                <FormRow type='text' name='name' placeholder='first name' required={true}/>
+                <FormRow type='text' name='lastName' placeholder='last name' />
+                <FormRow type='text' name='location' placeholder='earth' />
+                <FormRow type='text' name='email' placeholder='email@example.com' />
+                <FormRow type='password' name='password' placeholder='******' />
 
                 <button type='submit' className='btn btn-block' disabled={isSubmitting}>
                     {isSubmitting ? 'Submitting...' : 'Sign Up'}

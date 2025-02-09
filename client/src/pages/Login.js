@@ -39,8 +39,8 @@ const Login = () => {
 
                 {errors?.msg && <p style={{color: 'red'}}>{errors.msg}</p>}
 
-                <FormRow type={'email'} name='email' placeholder='email@example.com' defaultValue={'test@email.com'}/>
-                <FormRow type={'password'} name='password' placeholder='******' defaultValue={'123456'}/>
+                <FormRow type={'email'} name='email' placeholder='email@example.com' />
+                <FormRow type={'password'} name='password' placeholder='******' />
 
                 <button type='submit' className={'btn btn-block'}>
                     {isSubmitting ? 'Submitting...' : 'Sign In'}
