@@ -5,8 +5,6 @@ import { JobsContainer, SearchContainer } from "../components";
 import { createContext, useContext } from "react";
 
 export const loader = async ({request}) => {
-    console.log(request.url)
-
     const params = Object.fromEntries([
         ...new URL(request.url).searchParams.entries()
 
